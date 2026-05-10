@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signals</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #0b0b0b;
+        color: #d4d4d4;
+        font-family: "Courier New", monospace;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .container {
+        text-align: center;
+        max-width: 700px;
+        padding: 40px;
+    }
+
+    h1 {
+        letter-spacing: 4px;
+        margin-bottom: 30px;
+        font-size: 3rem;
+    }
+
+    .poem {
+        line-height: 2;
+        font-size: 1.1rem;
+        color: #b8b8b8;
+        display: none;
+    }
+
+    input {
+        background: #111;
+        border: 1px solid #444;
+        color: white;
+        padding: 10px;
+        width: 220px;
+        text-align: center;
+        font-size: 1rem;
+        margin-top: 20px;
+    }
+
+    button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        background: #1a1a1a;
+        color: white;
+        border: 1px solid #555;
+        cursor: pointer;
+        font-family: inherit;
+    }
+
+    button:hover {
+        background: #333;
+    }
+
+    .hidden-link {
+        margin-top: 40px;
+        display: none;
+    }
+
+    a {
+        color: #8ab4ff;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-shadow: 0 0 8px #8ab4ff;
+    }
+
+    .error {
+        color: #aa4444;
+        margin-top: 15px;
+        display: none;
+    }
+
+    .locked {
+        color: #ff4444;
+        font-size: 1.2rem;
+        display: none;
+        margin-top: 20px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>SIGNALS</h1>
+
+    <p id="promptText">ENTER PASSWORD</p>
+
+    <input type="password" id="passwordBox" placeholder="••••••">
+
+    <br>
+
+    <button id="accessButton" onclick="checkPassword()">
+        ACCESS
+    </button>
+
+    <div class="error" id="errorText">
+        incorrect password
+    </div>
+
+    <div class="locked" id="lockedText">
+        ACCESS DENIED
+    </div>
+
+    <div class="poem" id="secretContent">
+
+        The old screen glows long after night,<br>
+        humming softly without light.<br><br>
+
+        A whisper buried in the blue,<br>
+        waiting there to speak to you.<br><br>
+
+        Through tangled wires and satellite skies,<br>
+        hidden stories never die.<br><br>
+
+        If you listen close and stay awhile,<br>
+        you may find the missing file.
+
+        <div class="hidden-link">
+            <br><br>
+
+            <a href="https://www.youtube.com/@WhxrxIsXvxryxne" target="_blank">
+                OPEN CHANNEL
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+    let attempts = 0;
+
+    function checkPassword() {
+
+        const password = document.getElementById("passwordBox").value;
+
+        if (password === "317AM") {
+
+            document.getElementById("secretContent").style.display = "block";
+
+            document.querySelector(".hidden-link").style.display = "block";
+
+            document.getElementById("errorText").style.display = "none";
+
+        } else {
+
+            attempts++;
+
+            document.getElementById("errorText").style.display = "block";
+
+            if (attempts >= 3) {
+
+                document.getElementById("passwordBox").style.display = "none";
+
+                document.getElementById("accessButton").style.display = "none";
+
+                document.getElementById("errorText").style.display = "none";
+
+                document.getElementById("lockedText").style.display = "block";
+
+                document.getElementById("promptText").innerText = "connection terminated";
+
+                setTimeout(() => {
+
+                    window.location.href = "https://google.com";
+
+                }, 2000);
+            }
+        }
+    }
+
+</script>
+
+</body>
+</html>
